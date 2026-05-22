@@ -39,15 +39,13 @@ jobs:
 
     - name: Generate images
       run: |
-        ./zig-out/bin/github-stats
+        ./zig-out/bin/github-stats --access-token "$ACCESS_TOKEN"
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         EXCLUDE_REPOS: ${{ secrets.EXCLUDE_REPOS }}
         EXCLUDE_LANGS: ${{ secrets.EXCLUDE_LANGS }}
         EXCLUDE_PRIVATE: "false"
         SILENT: "true"
-        # TODO: Remove this when they get their API working again
-        # https://github.com/orgs/community/discussions/192970
         MAX_RETRIES: 5
 
     - name: Commit to the repo
